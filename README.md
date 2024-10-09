@@ -1,5 +1,9 @@
 # Terraform Provider RTMS
 
+## Purpose
+
+The RTMS terraform provider is designed to create and maintain rtms hosts and rtms services.
+
 ## Requirements
 
 - [Terraform](https://www.terraform.io/downloads.html) >= 0.13.x
