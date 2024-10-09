@@ -24,7 +24,7 @@
 
 #### rtms_host
 ```
-    resource "rtms_host" "example" {
+    resource "rtms_host" "example-host" {
       name    = "example-host"
       alias   = "Example Host"
       address = "192.168.1.100"
@@ -32,19 +32,19 @@
       admin_login = "admin"
       admin_password = "password"
       type = "server"
-      appliance = 1
+      appliance = data.rtms_appliance.example-appliance.id
     }
 ```
 #### rtms_monitoring_service
 ```
     resource "rtms_monitoring_service" "example" {
-      appliance = 1
-      host      = rtms_host.example.id
+      appliance = data.rtms_appliance.example-appliance.id
+      host      = rtms_host.example-host.id
       name      = "example-service"
-      template  = 1
+      template  = data.rtms_template.example-template.id
       description = "Example monitoring service"
       max_check_attempts = 3
-      plugin = 1
+      plugin = data.rtms_plugin.example-plugin.id
       plugin_args = "-w 80 -c 90"
       is_monitored = true
       notifications_enabled = true
@@ -55,18 +55,18 @@
       only_notify_if_critical = false
       normal_check_interval = 300
       retry_check_interval = 60
-      time_period = 1
-      check_period = 1
-      ticket_catalogs_items = [1, 2, 3]
+      time_period = data.rtms_timeperiod.example-timeperiod.id
+      check_period = data.rtms_checkperiod.example-checkperiod.id
+      ticket_catalogs_items = data.rtms_typology.example-typology.id
       auto_processing = true
-      responsible_team = 1
+      responsible_team = data.rtms_team.example-team.id
     }
 ```
 ### Data Sources
 
 #### rtms_appliance
 ```
-    data "rtms_appliance" "example" {
+    data "rtms_appliance" "example-appliance" {
       name      = "example-appliance"
       id        = 1
       alias     = "Example Appliance"
@@ -75,7 +75,7 @@
 ```
 #### rtms_plugin
 ```
-    data "rtms_plugin" "example" {
+    data "rtms_plugin" "example-plugin" {
       name         = "example-plugin"
       id           = 1
       isdeprecated = false
@@ -83,14 +83,14 @@
 ```
 #### rtms_template
 ```
-    data "rtms_template" "example" {
+    data "rtms_template" "example-template" {
       name = "example-template"
       id   = 1
     }
 ```
 #### rtms_typology
 ```
-    data "rtms_typology" "example" {
+    data "rtms_typology" "example-typology" {
       name        = "example-typology"
       description = "Example typology description"
       id          = [1, 2, 3]
@@ -98,21 +98,21 @@
 ```
 #### rtms_team
 ```
-    data "rtms_team" "example" {
+    data "rtms_team" "example-team" {
       name = "example-team"
       id   = 1
     }
 ```
 #### rtms_checkperiod
 ```
-    data "rtms_checkperiod" "example" {
+    data "rtms_checkperiod" "example-checkperiod" {
       name = "24x7"
       id   = 1
     }
 ```
 #### rtms_timeperiod
 ```
-    data "rtms_timeperiod" "example" {
+    data "rtms_timeperiod" "example-timeperiod" {
       name = "business-hours"
       id   = 1
     }
