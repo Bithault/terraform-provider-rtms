@@ -1,6 +1,6 @@
-module terraform-provider-cloudtemple
+module terraform-provider-rtms
 
-go 1.23.1
+go 1.22
 
 require (
 	github.com/agext/levenshtein v1.2.2 // indirect
