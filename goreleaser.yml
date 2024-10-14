@@ -46,7 +46,7 @@ signs:
       - "--pinentry-mode"
       - "loopback"
       - "--local-user"
-      - "{{ .Env.GPG_FINGERPRINT }}"
+      - "8C98D2C09AD0B7B84A84365E4BB4ECA0B059BDC9"
       - "--output"
       - "${signature}"
       - "--detach-sign"
