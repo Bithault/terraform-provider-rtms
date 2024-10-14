@@ -39,15 +39,6 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v4
-        with:
-          version: latest
-          args: release --clean
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
-          
       - name: Debug GPG
         run: |
           echo "GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}"
